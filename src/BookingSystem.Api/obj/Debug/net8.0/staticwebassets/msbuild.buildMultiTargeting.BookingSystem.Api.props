@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/BookingSystem.Api.props" />
+</Project>
