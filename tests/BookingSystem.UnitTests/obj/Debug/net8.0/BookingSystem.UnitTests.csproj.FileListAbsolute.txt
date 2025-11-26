@@ -134,3 +134,4 @@ C:\Users\aoapetu\source\repos\BookingSystem\tests\BookingSystem.UnitTests\obj\De
 C:\Users\aoapetu\source\repos\BookingSystem\tests\BookingSystem.UnitTests\obj\Debug\net8.0\BookingSystem.UnitTests.AssemblyInfoInputs.cache
 C:\Users\aoapetu\source\repos\BookingSystem\tests\BookingSystem.UnitTests\obj\Debug\net8.0\BookingSystem.UnitTests.AssemblyInfo.cs
 C:\Users\aoapetu\source\repos\BookingSystem\tests\BookingSystem.UnitTests\obj\Debug\net8.0\BookingSystem.UnitTests.csproj.CoreCompileInputs.cache
+C:\Users\aoapetu\source\repos\BookingSystem\tests\BookingSystem.UnitTests\obj\Debug\net8.0\BookingSystem.UnitTests.sourcelink.json

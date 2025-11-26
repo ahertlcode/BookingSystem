@@ -52,6 +52,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AspNetCore.Identity.MongoDbCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "AspNetCore.MongoDbIdentity": {
               "target": "Package",
               "version": "[1.1.0, )"
@@ -71,6 +75,10 @@
             "MongoDB.Bson": {
               "target": "Package",
               "version": "[3.5.1, )"
+            },
+            "mongocsharpdriver": {
+              "target": "Package",
+              "version": "[2.30.0, )"
             }
           },
           "imports": [
@@ -145,6 +153,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[5.3.0, )"
+            },
             "Microsoft.AspNetCore.Cryptography.KeyDerivation": {
               "target": "Package",
               "version": "[10.0.0, )"
@@ -156,6 +168,10 @@
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[3.5.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.4, )"
             }
           },
           "imports": [

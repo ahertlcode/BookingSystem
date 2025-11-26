@@ -56,9 +56,17 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.IdentityModel.JsonWebTokens": {
+              "target": "Package",
+              "version": "[8.15.0, )"
+            },
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[3.5.1, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.15.0, )"
             }
           },
           "imports": [
@@ -129,6 +137,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AspNetCore.Identity.MongoDbCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "AspNetCore.MongoDbIdentity": {
               "target": "Package",
               "version": "[1.1.0, )"
@@ -148,6 +160,10 @@
             "MongoDB.Bson": {
               "target": "Package",
               "version": "[3.5.1, )"
+            },
+            "mongocsharpdriver": {
+              "target": "Package",
+              "version": "[2.30.0, )"
             }
           },
           "imports": [

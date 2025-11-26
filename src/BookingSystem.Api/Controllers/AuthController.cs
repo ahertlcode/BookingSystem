@@ -1,6 +1,8 @@
 ﻿using BookingSystem.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using BookingSystem.Api.DTO;
+using Microsoft.AspNetCore.Identity;
+using BookingSystem.Domain.Entities;
 
 namespace BookingSystem.Api.Controllers
 {
@@ -9,9 +11,10 @@ namespace BookingSystem.Api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserService _userService;
+       
         public AuthController(UserService userService)
         {
-            _userService = userService;
+            _userService = userService;            
         }
 
         [HttpPost("login")]

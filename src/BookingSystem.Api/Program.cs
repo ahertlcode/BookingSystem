@@ -1,4 +1,3 @@
-using AspNetCore.MongoDbIdentity;
 using BookingSystem.Application.Interfaces;
 using BookingSystem.Application.Services;
 using BookingSystem.Domain.Entities;
@@ -6,30 +5,55 @@ using BookingSystem.Domain.IRepositories;
 using BookingSystem.Infrastructure.Configurations;
 using BookingSystem.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Conventions;
+using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using System.Text;
 
 
 
-
+IdentityModelEventSource.ShowPII = true;
+IdentityModelEventSource.LogCompleteSecurityArtifact = true;
 var builder = WebApplication.CreateBuilder(args);
+// Fix Guid issues for MongoDB
+/*
+ * BsonClassMap.RegisterClassMap<User>(cm =>
+{
+    cm.AutoMap();
+    cm.SetIgnoreExtraElements(true);
+});
+
+ */
+var pack = new ConventionPack
+{
+    new IgnoreExtraElementsConvention(true)
+};
+ConventionRegistry.Register("IgnoreExtraElements", pack, _ => true);
+BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
+
 builder.Services.AddCors(option => {
     option.AddPolicy("CorsPolicy", builder =>
     {
         builder
         .AllowAnyMethod()
         .AllowAnyHeader()
-        .WithOrigins([]);
+        .WithOrigins(["*"]);
     });
 });
 
-///Identity
-
+//Identity
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
+    .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>(
+        builder.Configuration["MongoDbSettings:ConnectionString"],
+        builder.Configuration["MongoDbSettings:DatabaseName"]
+    );
 
 var jwtKey = builder.Configuration["Jwt:Key"];
 var jwtIssuer = builder.Configuration["Jwt:Issuer"];
@@ -38,18 +62,19 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-    .AddJwtBearer(options => {
+}).AddJwtBearer(options => {
         options.RequireHttpsMetadata = true;
         options.SaveToken = true;
         options.Events = new JwtBearerEvents
         {
             OnAuthenticationFailed = context =>
             {
+               
                 return Task.CompletedTask;
             },
             OnTokenValidated = context =>
             {
+                
                 return Task.CompletedTask;
             }
         };
@@ -63,7 +88,7 @@ builder.Services.AddAuthentication(options =>
             ValidAudience = jwtIssuer,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey!)),
         };
-    });
+  });
 builder.Services.AddAuthorization();
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -78,12 +103,12 @@ builder.Services.AddSwaggerGen(options =>
         TermsOfService = new Uri("https://ehjz.qa/terms"),
         Contact = new OpenApiContact
         {
-            Name = "Sidmach Technologies Nigeria Ltd.",
+            Name = "Ehjz",
             Url = new Uri("https://ehjz.qa/contact")
         },
         License = new OpenApiLicense
         {
-            Name = "Sidmach",
+            Name = "Ehjz",
             Url = new Uri("https://ehjz.qa/license")
         }
     });
@@ -145,10 +170,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
 app.UseCors("CorsPolicy");
 app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();

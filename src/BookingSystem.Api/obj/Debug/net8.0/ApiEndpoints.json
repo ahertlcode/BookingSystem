@@ -207,6 +207,22 @@
   },
   {
     "ContainingType": "BookingSystem.Api.Controllers.UserController",
+    "Method": "CreateRole",
+    "RelativePath": "api/users/create-role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "BookingSystem.Api.DTO.CreateRoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BookingSystem.Api.Controllers.UserController",
     "Method": "DeleteUser",
     "RelativePath": "api/users/delete-user/{id}",
     "HttpMethod": "DELETE",

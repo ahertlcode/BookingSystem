@@ -5,11 +5,11 @@
     "description": "An ASP.NET Core Web API for BookingSystem Application.",
     "termsOfService": "https://ehjz.qa/terms",
     "contact": {
-      "name": "Sidmach Technologies Nigeria Ltd.",
+      "name": "Ehjz",
       "url": "https://ehjz.qa/contact"
     },
     "license": {
-      "name": "Sidmach",
+      "name": "Ehjz",
       "url": "https://ehjz.qa/license"
     },
     "version": "v1"
@@ -367,6 +367,37 @@
         }
       }
     },
+    "/api/users/create-role": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoleRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoleRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/users/add-user": {
       "post": {
         "tags": [
@@ -500,6 +531,20 @@
           "description": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateRoleRequest": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 100,
+            "minLength": 5,
+            "type": "string"
           }
         },
         "additionalProperties": false

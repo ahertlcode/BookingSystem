@@ -23,6 +23,7 @@ C:\Users\aoapetu\source\repos\BookingSystem\src\BookingSystem.Infrastructure\obj
 C:\Users\aoapetu\source\repos\BookingSystem\src\BookingSystem.Infrastructure\obj\Debug\net8.0\BookingSystem.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\aoapetu\source\repos\BookingSystem\src\BookingSystem.Infrastructure\obj\Debug\net8.0\BookingSystem.Infrastructure.AssemblyInfo.cs
 C:\Users\aoapetu\source\repos\BookingSystem\src\BookingSystem.Infrastructure\obj\Debug\net8.0\BookingSystem.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\aoapetu\source\repos\BookingSystem\src\BookingSystem.Infrastructure\obj\Debug\net8.0\BookingSystem.Infrastructure.sourcelink.json
 C:\Users\aoapetu\source\repos\BookingSystem\src\BookingSystem.Infrastructure\obj\Debug\net8.0\BookingS.84CF42C0.Up2Date
 C:\Users\aoapetu\source\repos\BookingSystem\src\BookingSystem.Infrastructure\obj\Debug\net8.0\BookingSystem.Infrastructure.dll
 C:\Users\aoapetu\source\repos\BookingSystem\src\BookingSystem.Infrastructure\obj\Debug\net8.0\refint\BookingSystem.Infrastructure.dll

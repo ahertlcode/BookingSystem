@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BookingSystem.Api.Controllers
 {
     [ApiController]
-    //[Authorize(Roles ="partner-admin")]
+    [Authorize]
     [Route("api/users")]
     public class UserController : ControllerBase
     {
@@ -16,6 +16,7 @@ namespace BookingSystem.Api.Controllers
             _userService = userService;
         }
 
+        [Authorize(Roles = "partner-admin")]
         [HttpGet("get-users")]
         public async Task<IActionResult> GetUsers()
         {
@@ -30,6 +31,26 @@ namespace BookingSystem.Api.Controllers
             }
         }
 
+        [AllowAnonymous]
+        [HttpPost("create-role")]
+        public async Task<IActionResult> CreateRole([FromBody] CreateRoleRequest req)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                await _userService.CreateRoleAsync(req.Name);
+                return Created("", new { req.Name });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [Authorize(Roles = "partner-admin")]
         [HttpPost("add-user")]
         public async Task<IActionResult> AddUser([FromBody] AddNewUser req)
         {
@@ -48,6 +69,7 @@ namespace BookingSystem.Api.Controllers
             }
         }
 
+        [Authorize(Roles = "partner-admin")]
         [HttpPut("update-user/{id}")]
         public async Task<IActionResult> UpdateUser(string id, [FromBody] AddNewUser req)
         {
@@ -67,6 +89,7 @@ namespace BookingSystem.Api.Controllers
             }
         }
 
+        [Authorize(Roles = "partner-admin")]
         [HttpDelete("delete-user/{id}")]
         public async Task<IActionResult> DeleteUser(string id)
         {
